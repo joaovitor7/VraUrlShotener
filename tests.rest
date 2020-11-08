@@ -1,0 +1,6 @@
+POST http://localhost:4000/login 
+Content-Type: application/json
+
+{
+"clientId": "5fb6f101f8d184dd6446ebe79c29800e"
+}
