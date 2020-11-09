@@ -1,6 +1,7 @@
-POST http://localhost:4000/login 
+POST http://localhost:3000/url
 Content-Type: application/json
 
 {
-"clientId": "5fb6f101f8d184dd6446ebe79c29800e"
+ "url": "https://github.com/joaovitor7",
+ "shortUrlId" : "github"
 }

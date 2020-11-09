@@ -6,11 +6,11 @@ const helmet = require('helmet');
 const morgan = require('morgan');
 
 //Import Schemas
-const ShortURL =  require('./models/shotUrl');
+const ShortURL =  require('./models/shortUrl');
 
 //Create a express app
 const app = express();
-const { SERVER_PORT } = process.env.SERVER_PORT;
+const { SERVER_PORT } = process.env;
 
 //Setting app params
 app.use(helmet());
@@ -35,7 +35,7 @@ app.get('/:id', async (req,res) => {
     const { id } = req.params;
     const shortUrl = await ShortURL.findOne({ shortUrlId: id });
     // Not Found
-    if (short == null) return res.sendStatus(404);
+    if (shortUrl == null) return res.sendStatus(404);
 
     shortUrl.clicks++;
     shortUrl.save();
