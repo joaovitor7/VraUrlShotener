@@ -1,0 +1,32 @@
+.Sub-Title{
+    position: absolute;
+    left: 18.84%;
+    right: 17.81%;
+    top: 74.09%;
+    bottom: 0%;
+
+    font-family: Impact;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 48px;
+    line-height: 50px;
+
+    color: rgba(16, 18, 68, 0.94);
+}
+
+.Title{
+    position: absolute;
+    left: 0%;
+    right: 0%;
+    top: 0%;
+    bottom: 25.91%;
+
+    font-family: Impact;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 144px;
+    line-height: 151px;
+
+    color: rgba(16, 18, 68, 0.94);
+}
+
