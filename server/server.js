@@ -4,6 +4,7 @@ require('./helpers/DatabaseHelper');
 const express = require('express');
 const helmet = require('helmet');
 const morgan = require('morgan');
+const cors = require('cors');
 
 //Import Schemas
 const ShortURL =  require('./models/shortUrl');
@@ -14,10 +15,16 @@ const { SERVER_PORT } = process.env;
 
 //Setting app params
 app.use(helmet());
-app.use(morgan('tiny'));
+app.use(morgan('dev'));
 app.use(express.json());
+app.use(cors());
 
-app.post('/url', async (req,res) =>{   
+const corsOptions = {
+    origin: 'http://localhost:3000',
+    optionsSuccessStatus: 200 
+};
+
+app.post('/url', cors(corsOptions), async (req,res) =>{   
     const { url, shortUrlId } = req.body;
     //Bad Request
     if (!url) return res.sendStatus(400);
@@ -25,6 +32,9 @@ app.post('/url', async (req,res) =>{
     if (!shortUrlId){
         await ShortURL.create({url});
     } else {
+        const shortUrl = await ShortURL.findOne({ shortUrlId});
+        //Already Exists
+        if (shortUrl != null) return res.sendStatus(403)
         await ShortURL.create({url, shortUrlId});
     }
 
