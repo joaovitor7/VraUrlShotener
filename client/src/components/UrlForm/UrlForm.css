@@ -28,6 +28,7 @@
   }
 
   .Label{
+    font-family: Arial;
     color: rgba(16, 18, 68, 0.94);
     margin: 10px;
   }

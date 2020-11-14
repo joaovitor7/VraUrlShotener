@@ -1,8 +1,8 @@
 import './App.css';
-import UrlForm from './components/UrlForm/UrlForm';
-import Logo from './components/Logo/Logo';
+import UrlForm from '../UrlForm/UrlForm';
+import Logo from '../Logo/Logo';
 
-function App() {
+const App = () => {
   return (
     <div className="App">
       <header className="Logo">

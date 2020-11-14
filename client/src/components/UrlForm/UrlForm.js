@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
 import './UrlForm.css';
 
-function UrlForm () {
+const UrlForm = () => {
     const [url , setUrl] = useState('');
     const [shortUrlId, setShotUrlId] = useState('');
     const [registeredUrl, setRegisteredUrl] = useState(null);
     
-    function onSubmit (event) {
+    const onSubmit = (event) => {
         fetch('http://localhost:3033/url/', {
             method: "POST",
             body: JSON.stringify({ url, shortUrlId }),
@@ -14,9 +14,12 @@ function UrlForm () {
         })
         .then(res => {
             if (res.status === 403) return alert("ShorUrl already exist")
-            if (res.status === 200) return alert("Short url created")
-            setRegisteredUrl(shortUrlId)
+            if (res.status === 200 && registeredUrl == null) setRegisteredUrl(shortUrlId)
         });
+    }
+
+    const onClick = (event) =>{
+        setRegisteredUrl(null)
     }
 
     if(registeredUrl) {
@@ -24,7 +27,9 @@ function UrlForm () {
             <div className='Url-Form'>
                 <i className="Label">Shortener url was created:</i>
                 <a href={`http://localhost:3033/${registeredUrl}`}>{`http://localhost:3033/${registeredUrl}`}</a>
+                <button onClick={onClick} className="Buton-Ok"> Back </button>
             </div>
+            
         );
     }
     return (
@@ -45,8 +50,9 @@ function UrlForm () {
             onChange = {({ target : { value }}) => setShotUrlId(value)}
             />
             <button type='submit' className="Buton-Ok"> OK </button>
+            
         </form>
     );
-
 }
- export default UrlForm;
+
+export default UrlForm;
