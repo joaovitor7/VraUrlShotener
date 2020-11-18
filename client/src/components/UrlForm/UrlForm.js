@@ -7,6 +7,7 @@ const UrlForm = () => {
     const [registeredUrl, setRegisteredUrl] = useState(null);
     
     const onSubmit = (event) => {
+        event.preventDefault();
         fetch('http://localhost:3033/url/', {
             method: "POST",
             body: JSON.stringify({ url, shortUrlId }),
@@ -25,7 +26,7 @@ const UrlForm = () => {
     if(registeredUrl) {
         return (
             <div className='Url-Form'>
-                <i className="Label">Shortener url was created:</i>
+                <h3 className="Label">Shortener url was created:</h3>
                 <a href={`http://localhost:3033/${registeredUrl}`}>{`http://localhost:3033/${registeredUrl}`}</a>
                 <button onClick={onClick} className="Buton-Ok"> Back </button>
             </div>
